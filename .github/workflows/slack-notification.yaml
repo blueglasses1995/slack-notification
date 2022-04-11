@@ -8,11 +8,12 @@ jobs:
   slack-notification:
     name: Fetch unreleased patch versions
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v2
+      - run: gh auth login
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Staging Notification
         run: ./scripts/slack-notification.sh
         env:
