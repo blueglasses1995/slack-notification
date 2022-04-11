@@ -13,7 +13,7 @@ jobs:
         run: ./scripts/slack-notification.sh
         env:
           SLACK_URL: "https://hooks.slack.com/services/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"
-          SLACK_CHANNEL: "#general"
+          SLACK_CHANNEL: '#general'
           TITLE: "現時点でbeta環境で最新のパッチバージョンでないPackage一覧"
           ENVIRONMENT: "beta"
           REF_URL: "https://github.com/dinii-inc/dinii-self-all/tree/"
