@@ -11,6 +11,7 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v2
+      - run: sudo yum install -y https://github.com/cli/cli/releases/download/v1.11.0/gh_1.11.0_linux_386.rpm
       - run: gh auth login
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
