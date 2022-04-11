@@ -9,8 +9,6 @@
 # DEPLOYMENT_SERVER_URL="https://deploy-server.develop.self.dinii.jp/"
 # COLOR="#4db56a"
 
-set -eu
-
 payload="\`cat \<\< EOS
   {
     \"channel\": ${SLACK_CHANNEL},
@@ -45,22 +43,24 @@ payload="\`cat \<\< EOS
               },
             ],
           },"
-
-#PRODUCTS=("dinii-self-backend" "dinii-self-cash-register" "dinii-self-dashboard" "dinii-self-monitor" "dinii-self-functions" "dinii-self-handy" "dinii-self-kd" "dinii-self-kiosk" "dinii-self-kiosk-customer-web" "dinii-self-web")
-
-PRODUCTS=("dinii-self-backend" "dinii-self-cash-register" "dinii-self-dashboard" "dinii-self-monitor" "dinii-self-handy" "dinii-self-kd" "dinii-self-kiosk" "dinii-self-kiosk-customer-web" "dinii-self-web")
-
-declare -a diff_message_arrays=()
+          
+PRODUCTS=("dinii-self-backend" "dinii-self-cash-register" "dinii-self-dashboard" "dinii-self-monitor" "dinii-self-functions" "dinii-self-handy" "dinii-self-kd" "dinii-self-kiosk" "dinii-self-kiosk-customer-web" "dinii-self-web")
 
 for product in ${PRODUCTS[@]}
 do
     data="$(gh api "repos/dinii-inc/dinii-self-all/deployments?task=deploy-${product}&environment=${ENVIRONMENT}" -H "Accept: application/vnd.github.ant-man-preview+json")"
     deployments=$(echo "${data}" | jq -r '[.[] | { deployment_id: .id, version: .ref }]')
+    
+    if [ -z ${deployments} ]; then
+        continue
+    fi
+
+    deployments_length=$(echo "${deployments}" | jq '. | length')
 
     latest_version=""
     latest_minor_version=""
     counter=0
-    while (( "${counter}" < 30 ))
+    while (( "${counter}" < ${deployments_length} ))
     do
         deployment_id=$( echo "${deployments}" | jq .["${counter}"].deployment_id)
         version=$( echo "${deployments}" | jq .["${counter}"].version)
@@ -76,10 +76,14 @@ do
         ((counter++))
     done
 
+    if [ -z ${is_success} ]; then
+        continue
+    fi
+
     latest_available_version=""
     while (( "${counter}" < 100000 ))
     do
-        tags="$(gh api "repos/dinii-inc/dinii-self-all/tags?per_page=100&page=${counter}" -H "Accept: application/vnd.github.ant-man-preview+json")"
+        tags="$(gh api "repos/dinii-inc/dinii-self-all/tags?per_page=10&page=${counter}" -H "Accept: application/vnd.github.ant-man-preview+json")"
         quoted_available_versions=$(echo "${tags}" | jq .[].name )
         available_versions="${quoted_available_versions//\"/}"
         if [[ $(echo "${available_versions}" | grep "${latest_minor_version}") ]]; then
@@ -116,7 +120,6 @@ do
           },"
       payload="${payload}${diff_messages}"
     fi
-    echo "${payload}"
 done
 
 deployment_server_link="{
