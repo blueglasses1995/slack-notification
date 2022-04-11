@@ -37,6 +37,9 @@ payload="\`cat \<\< EOS
           
 PRODUCTS=("dinii-self-backend" "dinii-self-cash-register" "dinii-self-dashboard" "dinii-self-monitor" "dinii-self-functions" "dinii-self-handy" "dinii-self-kd" "dinii-self-kiosk" "dinii-self-kiosk-customer-web" "dinii-self-web")
 
+sudo yum install -y https://github.com/cli/cli/releases/download/v1.11.0/gh_1.11.0_linux_386.rpm
+echo ${GITHUB_TOKEN} | gh auth login --with-token
+
 for product in ${PRODUCTS[@]}
 do
     data="$(gh api "repos/dinii-inc/dinii-self-all/deployments?task=deploy-${product}&environment=${ENVIRONMENT}" -H "Accept: application/vnd.github.ant-man-preview+json")"

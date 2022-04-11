@@ -11,10 +11,6 @@ jobs:
     timeout-minutes: 3
     steps:
       - uses: actions/checkout@v2
-      - run: sudo yum install -y https://github.com/cli/cli/releases/download/v1.11.0/gh_1.11.0_linux_386.rpm
-      - run: gh auth login
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Staging Notification
         run: ./scripts/slack-notification.sh
         env:
@@ -26,6 +22,7 @@ jobs:
           DEPLOYMENT_SERVER_URL: "https://deploy-server.develop.self.dinii.jp/"
           COLOR: "#4db56a"
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Beta Notification
         run: ./scripts/slack-notification.sh
         env:
@@ -37,6 +34,7 @@ jobs:
           DEPLOYMENT_SERVER_URL: "https://deploy-server.develop.self.dinii.jp/"
           COLOR: "#4db56a"
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Production Notification
         run: ./scripts/slack-notification.sh
         env:
@@ -48,3 +46,4 @@ jobs:
           DEPLOYMENT_SERVER_URL: "https://deploy-server.develop.self.dinii.jp/"
           COLOR: "#4db56a"
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
