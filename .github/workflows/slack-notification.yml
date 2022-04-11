@@ -7,7 +7,7 @@ on:
 jobs:
   slack-notification:
     name: Fetch unreleased patch versions
-    runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Notify errors of the "fetching unreleased patch versions" step above
         run: ./scripts/slack-notification.sh

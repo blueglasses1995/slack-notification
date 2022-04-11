@@ -1,14 +1,5 @@
 #!/bin/bash
 
-#【TODO】消す
-# SLACK_URL="https://hooks.slack.com/services/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"
-# SLACK_CHANNEL="#general"
-# TITLE="現時点でbeta環境で最新のパッチバージョンでないPackage一覧"
-# ENVIRONMENT="beta"
-# REF_URL="https://github.com/dinii-inc/dinii-self-all/tree/"
-# DEPLOYMENT_SERVER_URL="https://deploy-server.develop.self.dinii.jp/"
-# COLOR="#4db56a"
-
 payload="\`cat \<\< EOS
   {
     \"channel\": ${SLACK_CHANNEL},
