@@ -37,7 +37,10 @@ payload="\`cat \<\< EOS
           
 PRODUCTS=("dinii-self-backend" "dinii-self-cash-register" "dinii-self-dashboard" "dinii-self-monitor" "dinii-self-functions" "dinii-self-handy" "dinii-self-kd" "dinii-self-kiosk" "dinii-self-kiosk-customer-web" "dinii-self-web")
 
-sudo yum install -y https://github.com/cli/cli/releases/download/v1.11.0/gh_1.11.0_linux_386.rpm
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+sudo apt update
+sudo apt install gh
 echo ${GITHUB_TOKEN} | gh auth login --with-token
 
 for product in ${PRODUCTS[@]}
