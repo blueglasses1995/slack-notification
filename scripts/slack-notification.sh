@@ -26,17 +26,17 @@ payload="\`cat << EOS
               \"fields\": [
                 {
                   \"type\": \"mrkdwn\",
-                  \"text\": \"*Package*\",
+                  \"text\": \"*Package*\"
                 },
                 {
                   \"type\": \"mrkdwn\",
-                  \"text\": \"*Current Version*\",
+                  \"text\": \"*Current Version*\"
                 },
                 {
                   \"type\": \"mrkdwn\",
-                  \"text\": \"*Available Version*\",
-                },
-              ],
+                  \"text\": \"*Available Version*\"
+                }
+              ]
             },"
           
 PRODUCTS=("dinii-self-backend" "dinii-self-cash-register" "dinii-self-dashboard" "dinii-self-monitor" "dinii-self-functions" "dinii-self-handy" "dinii-self-kd" "dinii-self-kiosk" "dinii-self-kiosk-customer-web" "dinii-self-web")
@@ -101,17 +101,17 @@ do
             \"fields\": [
               {
                 \"type\": \"mrkdwn\",
-                \"text\": \"${product}\",
+                \"text\": \"${product}\"
               },
               {
                 \"type\": \"mrkdwn\",
-                \"text\": \"<${REF_URL}${latest_version}|\`${latest_version}\`>\",
+                \"text\": \"<${REF_URL}${latest_version}|\`${latest_version}\`>\"
               },
               {
                 \"type\": \"mrkdwn\",
-                \"text\": \"<${REF_URL}${latest_available_version}|\`${latest_available_version}\`>\",
-              },
-            ],
+                \"text\": \"<${REF_URL}${latest_available_version}|\`${latest_available_version}\`>\"
+              }
+            ]
           },"
       payload="${payload}${diff_messages}"
     fi
@@ -122,16 +122,16 @@ deployment_server_link="{
             \"fields\": [
               {
                 \"type\": \"mrkdwn\",
-                \"text\": \"<${DEPLOYMENT_SERVER_URL}|\`Go to Deployment Server\`\>",
-              },
-            ],
-          },
-        }, "
+                \"text\": \"<${DEPLOYMENT_SERVER_URL}|\`Go to Deployment Server\`\>"
+              }
+            ]
+          }
+        }"
 
 payload="${payload}${deployment_server_link}
-        ],
-      },
-    ],
+        ]
+      }
+    ]
   }
 EOS\`"
 
