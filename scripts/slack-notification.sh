@@ -122,7 +122,7 @@ deployment_server_link="{
             \"fields\": [
               {
                 \"type\": \"mrkdwn\",
-                \"text\": \"<${DEPLOYMENT_SERVER_URL}|\`Go to Deployment Server\`\",
+                \"text\": \"<${DEPLOYMENT_SERVER_URL}|\`Go to Deployment Server\`\>",
               },
             ],
           },
