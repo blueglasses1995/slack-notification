@@ -126,7 +126,8 @@ deployment_server_link="{
                 \"text\": \"<${DEPLOYMENT_SERVER_URL}|\`Go to Deployment Server\`\",
               },
             ],
-          },"
+          },
+        }, "
 
 payload="${payload}${deployment_server_link}
         ],
