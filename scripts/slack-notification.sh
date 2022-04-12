@@ -141,4 +141,6 @@ TIMESTAMP=$(curl --silent --show-error -X POST \
   --data "${payload}" \
   https://slack.com/api/chat.postMessage | jq -r ".ts")
 
-echo $TIMESTAMP
+echo ${payload}
+
+echo ${TIMESTAMP}
