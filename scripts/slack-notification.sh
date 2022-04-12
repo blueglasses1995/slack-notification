@@ -17,28 +17,27 @@ payload="\`cat << EOS
           \"type\": \"plain_text\",
           \"text\": \"${TITLE}\"
         }
-      },
-    \"attachments\": [
-      {
-        \"color\": \"${COLOR}\",
-        \"blocks\": [
-          {
-            \"type\": \"section\",
-            \"fields\": [
-              {
-                \"type\": \"mrkdwn\",
-                \"text\": \"*Package*\",
-              },
-              {
-                \"type\": \"mrkdwn\",
-                \"text\": \"*Current Version*\",
-              },
-              {
-                \"type\": \"mrkdwn\",
-                \"text\": \"*Available Version*\",
-              },
-            ],
-          },"
+      \"attachments\": [
+        {
+          \"color\": \"${COLOR}\",
+          \"blocks\": [
+            {
+              \"type\": \"section\",
+              \"fields\": [
+                {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \"*Package*\",
+                },
+                {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \"*Current Version*\",
+                },
+                {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \"*Available Version*\",
+                },
+              ],
+            },"
           
 PRODUCTS=("dinii-self-backend" "dinii-self-cash-register" "dinii-self-dashboard" "dinii-self-monitor" "dinii-self-functions" "dinii-self-handy" "dinii-self-kd" "dinii-self-kiosk" "dinii-self-kiosk-customer-web" "dinii-self-web")
 
