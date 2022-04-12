@@ -1,8 +1,11 @@
 name: CRON
+# on:
+#   schedule:
+#     # UTC
+#     - cron: "*/1 * * * *"
 on:
-  schedule:
-    # UTC
-    - cron: "*/1 * * * *"
+  workflow_dispatch:
+
 env:
   GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
 
