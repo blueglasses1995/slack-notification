@@ -22,6 +22,7 @@ jobs:
           DEPLOYMENT_SERVER_URL: "https://deploy-server.develop.self.dinii.jp/"
           COLOR: "#4db56a"
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          GITHUB_TOKEN: ""
       - name: Beta Notification
         run: ./scripts/slack-notification.sh
         env:
@@ -33,6 +34,7 @@ jobs:
           DEPLOYMENT_SERVER_URL: "https://deploy-server.develop.self.dinii.jp/"
           COLOR: "#4db56a"
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          GITHUB_TOKEN: ""
       - name: Production Notification
         run: ./scripts/slack-notification.sh
         env:
@@ -44,3 +46,4 @@ jobs:
           DEPLOYMENT_SERVER_URL: "https://deploy-server.develop.self.dinii.jp/"
           COLOR: "#4db56a"
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          GITHUB_TOKEN: ""
