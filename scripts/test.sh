@@ -3,7 +3,7 @@ payload='{ "channel": "#general",
   "icon_emoji": ":information_desk_person:",
   "blocks": [
     { "type": "header",
-      "text": { "type": "plain_text", "text": "現時点でstaging環境で最新のパッチバージョンでないPackage一覧" } },
+      "text": { "type": "plain_text", "text": "現時点でstaging環境で最新のパッチバージョンでないPackage一覧" },
       "attachments": [
         { "color": "#4db56a",
           "blocks": [
