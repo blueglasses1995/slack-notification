@@ -83,3 +83,5 @@ TIMESTAMP=$(curl --silent --show-error -X POST \
   -H "Content-"type": application/json; charset=utf-8" \
   --data "\`cat << EOS ${payload} EOS\`" \
   https://slack.com/api/chat.postMessage | jq -r ".ts")
+
+  echo TIMESTAMP
