@@ -5,7 +5,7 @@ if [ ! $GITHUB_TOKEN ]; then
   exit 1
 fi
 
-payload="\`cat \<\< EOS
+payload="\`cat << EOS
   {
     \"channel\": ${SLACK_CHANNEL},
     \"username\": \"Overmind\",
