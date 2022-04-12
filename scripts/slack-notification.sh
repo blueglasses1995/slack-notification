@@ -7,7 +7,7 @@ fi
 
 payload="\`cat << EOS
   {
-    \"channel\": ${SLACK_CHANNEL},
+    \"channel\": \"${SLACK_CHANNEL}\",
     \"username\": \"Overmind\",
     \"icon_emoji\": \":information_desk_person:\",
     \"blocks\": [
@@ -15,12 +15,12 @@ payload="\`cat << EOS
         \"type\": \"header\",
         \"text\": {
           \"type\": \"plain_text\",
-          \"text\": ${TITLE}
+          \"text\": \"${TITLE}\"
         }
       },
     \"attachments\": [
       {
-        \"color\": ${COLOR},
+        \"color\": \"${COLOR}\",
         \"blocks\": [
           {
             \"type\": \"section\",
@@ -102,15 +102,15 @@ do
             \"fields\": [
               {
                 \"type\": \"mrkdwn\",
-                \"text\": ${product},
+                \"text\": \"${product}\",
               },
               {
                 \"type\": \"mrkdwn\",
-                \"text\": <${REF_URL}${latest_version}|\`${latest_version}\`>,
+                \"text\": \"<${REF_URL}${latest_version}|\`${latest_version}\`>\",
               },
               {
                 \"type\": \"mrkdwn\",
-                \"text\": <${REF_URL}${latest_available_version}|\`${latest_available_version}\`>,
+                \"text\": \"<${REF_URL}${latest_available_version}|\`${latest_available_version}\`>\",
               },
             ],
           },"
@@ -123,7 +123,7 @@ deployment_server_link="{
             \"fields\": [
               {
                 \"type\": \"mrkdwn\",
-                \"text\": <${DEPLOYMENT_SERVER_URL}|\`Go to Deployment Server\`,
+                \"text\": \"<${DEPLOYMENT_SERVER_URL}|\`Go to Deployment Server\`\",
               },
             ],
           },"
