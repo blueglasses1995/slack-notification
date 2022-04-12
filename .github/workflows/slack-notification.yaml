@@ -3,6 +3,8 @@ on:
   schedule:
     # UTC
     - cron: "*/1 * * * *"
+env:
+  GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
 
 jobs:
   slack-notification:
