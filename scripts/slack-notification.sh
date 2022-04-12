@@ -16,7 +16,7 @@ payload="\`cat << EOS
         \"text\": {
           \"type\": \"plain_text\",
           \"text\": \"${TITLE}\"
-        }
+        },
       \"attachments\": [
         {
           \"color\": \"${COLOR}\",
@@ -127,7 +127,9 @@ deployment_server_link="{
             ]
           }"
 
-payload="${payload}${deployment_server_link}}
+payload="${payload}${deployment_server_link}
+            ]
+          }
         ]
       }
     ]
