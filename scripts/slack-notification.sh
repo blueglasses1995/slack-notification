@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ ! $GITHUB_TOKEN ]; then
-  echo "Please set GITHUB_TOKEN as environmental varialbe."
+  echo "Please set GITHUB_TOKEN as environmental variable."
   exit 1
 fi
 
@@ -78,24 +78,40 @@ do
     latest_available_version=""
     while (( "${counter}" < 100000 ))
     do
-        tags="$(gh api "repos/dinii-inc/dinii-self-all/tags?per_page=10&page=${counter}" -H "Accept: application/vnd.github.ant-man-preview+json")"
+        tags="$(gh api "repos/dinii-inc/dinii-self-all/tags?per_page=100&page=${counter}" -H "Accept: application/vnd.github.ant-man-preview+json")"
         quoted_available_versions=$(echo "${tags}" | jq .[].name )
         available_versions="${quoted_available_versions//\"/}"
-        if [[ $(echo "${available_versions}" | grep "${latest_minor_version}") ]]; then
-            #最新マイナーバージョンのうちの最大パッチバージョンを持ってくる
-            for version in $available_versions; do
-                if [[ $(echo "${version}" | grep "${latest_minor_version}") ]]; then
-                    latest_available_version="${version}"
-                    break
-                fi
-            done
+        
+        #latest_versionより新しいパッチバージョン
+        later_available_versions=$(echo "${available_versions}" | sed -n -e "1,/${latest_version}/p" | grep "${latest_minor_version}")
+
+        later_available_versions_num=$(echo ${later_available_versions} | grep -o v | wc -l )
+        
+        if [ "${later_available_versions_num}" -eq 0 ] || [ "${later_available_versions_num}" -eq 1 ]; then
             break
         fi
+                
+        #later_available_versionsの中で差分の存在する最新のパッチバージョンがlatest_available_version
+        while (( "${counter}" < "${later_available_versions_num}" ))
+        do
+        
+            tmp_latest_version=$(echo "${later_available_versions}" | grep "${latest_minor_version}" | sed -n ${counter}p)
+
+            diffs="`git diff --name-only ${latest_version} ${tmp_latest_version} -- ./packages/${product} `"
+
+            if [ -n "${diffs}" ]; then
+                echo "e: ${tmp_latest_version}"
+                latest_available_version="${tmp_latest_version}"
+                break
+            fi
+            
+            ((counter++))
+        done
         ((counter++))
     done
 
     diff_messages=""
-    if test "${latest_version}" != "${latest_available_version}"; then
+    if [ ${#latest_available_version} -gt 0 ]; then
         diff_messages="{
             \"type\": \"section\",
             \"fields\": [
@@ -141,7 +157,5 @@ TIMESTAMP=$(curl --silent --show-error -X POST \
   -H "Content-"type": application/json; charset=utf-8" \
   --data "${payload}" \
   https://slack.com/api/chat.postMessage | jq -r ".ts")
-
-echo ${payload}
 
 echo ${TIMESTAMP}

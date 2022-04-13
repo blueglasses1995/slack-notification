@@ -15,8 +15,8 @@ payload='{ "channel": "#general",
             },
             { "type": "section", "fields": [
                 { "type": "mrkdwn", "text": "dinii-self-backend"},
-                { "type": "mrkdwn", "text": "<https://github.com/dinii-inc/dinii-self-all/tree/v1.68.0|`v1.68.0`>" }, 
-                { "type": "mrkdwn", "text": "<https://github.com/dinii-inc/dinii-self-all/tree/v1.68.2|`v1.68.2`>" }
+                { "type": "mrkdwn", "text": "<https://github.com/dinii-inc/dinii-self-all/tree/v1.68.0|v1.68.0>" }, 
+                { "type": "mrkdwn", "text": "<https://github.com/dinii-inc/dinii-self-all/tree/v1.68.2|v1.68.2>" }
               ]
             },
             { "type": "section", "fields": [
