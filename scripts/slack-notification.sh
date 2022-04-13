@@ -95,7 +95,7 @@ do
         while (( "${counter}" < "${later_available_versions_num}" ))
         do
         
-            tmp_latest_version=$(echo "${later_available_versions}" | grep "${latest_minor_version}" | sed -n ${counter}p)
+            tmp_latest_version=$(echo "${later_available_versions}" | grep "${latest_minor_version}" | sed -n "${counter}"p)
 
             echo "${tmp_latest_version}"
 
