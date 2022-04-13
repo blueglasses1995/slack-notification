@@ -97,6 +97,8 @@ do
         
             tmp_latest_version=$(echo "${later_available_versions}" | grep "${latest_minor_version}" | sed -n ${counter}p)
 
+            echo "${tmp_latest_version}"
+
             diffs="`git diff --name-only ${latest_version} ${tmp_latest_version} -- ./packages/${product} `"
 
             if [ -n "${diffs}" ]; then
